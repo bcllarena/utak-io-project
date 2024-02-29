@@ -10,6 +10,6 @@
 - React
 - Typescript
 - React Router
-- Shadcn UI + Taiwind + Zod
+- Shadcn UI + Tailwind + Zod
 - Firebase
 - Vercel
