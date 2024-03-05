@@ -380,7 +380,7 @@ function ItemList() {
                 name="itemAddOnsSize"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Categories</FormLabel>
+                    <FormLabel>Add-Ons</FormLabel>
                     <Select
                       defaultValue={field.value}
                       onValueChange={field.onChange}
