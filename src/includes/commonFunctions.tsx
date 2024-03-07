@@ -11,7 +11,7 @@ function capitalizePhrase(phrase: string): string {
 function underConstruction(page: string) {
   return (
     <>
-      <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+      <div className="flex flex-col items-center justify-center min-h-[calc(100vh-57px)] bg-gray-100">
         <h1 className="text-4xl font-bold text-gray-900">
           {page} page under construction
         </h1>
@@ -29,4 +29,15 @@ function underConstruction(page: string) {
   );
 }
 
-export { capitalizePhrase, underConstruction };
+function pageNotFound() {
+  return (
+    <>
+      <div className="flex flex-col items-center justify-center min-h-[calc(100vh-57px)] bg-gray-100">
+        <h1 className="text-8xl font-bold text-gray-900">404</h1>
+        <p className="mt-4 text-lg text-gray-600">Page not found</p>
+      </div>
+    </>
+  );
+}
+
+export { capitalizePhrase, underConstruction, pageNotFound };

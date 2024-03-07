@@ -5,6 +5,7 @@ import Footer from "./components-custom/Footer";
 import ItemList from "./components-custom/ItemList";
 import Categories from "./components-custom/Categories";
 import AddOns from "./components-custom/AddOns";
+import PageNotFound from "./components-custom/PageNotFound";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
             <Route path="/items" element={<ItemList />} />
             <Route path="/categories" element={<Categories />} />
             <Route path="/addons" element={<AddOns />} />
-            <Route path="*" element={"Page not found"} />
+            <Route path="*" element={<PageNotFound />} />
           </Routes>
         </div>
         <Footer />
