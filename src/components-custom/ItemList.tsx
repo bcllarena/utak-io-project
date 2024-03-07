@@ -278,7 +278,7 @@ function ItemList() {
       <Dialog open={formIsOpen} onOpenChange={setFormIsOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Add new item</DialogTitle>
+            <DialogTitle>Add New Item</DialogTitle>
           </DialogHeader>
 
           <Form {...form}>
