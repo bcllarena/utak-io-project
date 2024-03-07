@@ -22,6 +22,7 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -434,16 +435,24 @@ function ItemList() {
       <Dialog open={deleteDialogIsOpen} onOpenChange={setDeleteDialogIsOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Delete ({itemNameToBeDeleted}) item?</DialogTitle>
+            <DialogTitle>Delete Item</DialogTitle>
+            <DialogDescription>
+              Are you sure you want to delete item {itemNameToBeDeleted}?
+            </DialogDescription>
           </DialogHeader>
 
-          <Button type="button" className="mr-2" onClick={handleDelete}>
-            Yes
-          </Button>
-
-          <Button type="button" variant="secondary" onClick={closeDeleteDialog}>
-            No
-          </Button>
+          <DialogFooter>
+            <Button type="button" onClick={handleDelete}>
+              Yes
+            </Button>
+            <Button
+              type="button"
+              variant="secondary"
+              onClick={closeDeleteDialog}
+            >
+              No
+            </Button>
+          </DialogFooter>
         </DialogContent>
       </Dialog>
     </div>
