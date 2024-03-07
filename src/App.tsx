@@ -9,9 +9,9 @@ import AddOns from "./components-custom/AddOns";
 function App() {
   return (
     <>
-      <Header />
-      <div className="container">
-        <BrowserRouter>
+      <BrowserRouter>
+        <Header />
+        <div className="container">
           <Routes>
             <Route path="/" element={<ItemList />} />
             <Route path="/items" element={<ItemList />} />
@@ -19,9 +19,9 @@ function App() {
             <Route path="/addons" element={<AddOns />} />
             <Route path="*" element={"Page not found"} />
           </Routes>
-        </BrowserRouter>
-      </div>
-      <Footer />
+        </div>
+        <Footer />
+      </BrowserRouter>
       <Toaster />
     </>
   );

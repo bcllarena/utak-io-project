@@ -1,4 +1,8 @@
+import { useLocation } from "react-router-dom";
+
 function Header() {
+  const location = useLocation();
+
   return (
     <>
       <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -11,19 +15,32 @@ function Header() {
             </a>
             <nav className="flex items-center gap-6 text-sm">
               <a
-                className={`transition-colors hover:text-foreground/80 text-foreground/60`}
+                className={`transition-colors hover:text-foreground/80 ${
+                  location.pathname.toLowerCase() === "/" ||
+                  location.pathname.toLowerCase().indexOf("/items") >= 0
+                    ? "text-foreground"
+                    : "text-foreground/60"
+                }`}
                 href="/items"
               >
                 Items
               </a>
               <a
-                className={`transition-colors hover:text-foreground/80 text-foreground/60`}
+                className={`transition-colors hover:text-foreground/80 ${
+                  location.pathname.toLowerCase().indexOf("/categories") >= 0
+                    ? "text-foreground"
+                    : "text-foreground/60"
+                }`}
                 href="/categories"
               >
                 Categories
               </a>
               <a
-                className={`transition-colors hover:text-foreground/80 text-foreground/60`}
+                className={`transition-colors hover:text-foreground/80 ${
+                  location.pathname.toLowerCase().indexOf("/addons") >= 0
+                    ? "text-foreground"
+                    : "text-foreground/60"
+                }`}
                 href="/addons"
               >
                 Add-Ons
