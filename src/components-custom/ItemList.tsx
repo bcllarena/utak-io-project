@@ -38,6 +38,16 @@ import {
   SelectGroup,
 } from "../components/ui/Select";
 
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+} from "../components/ui/Pagination";
+
 import { useToast } from "../components/ui/UseToast";
 
 // Form
@@ -106,6 +116,10 @@ function ItemList() {
   >();
   const [itemList, setItemList] = useState<Array<itemListInterface>>([]);
 
+  const rowsPerPage = 10;
+  const [startIndex, setStartIndex] = useState(0);
+  const [endIndex, setEndIndex] = useState(rowsPerPage);
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -118,8 +132,16 @@ function ItemList() {
     let itemDataArray: Array<itemListInterface> = [];
 
     if (getItemDataResults != null) {
-      for (var key in getItemDataResults) {
-        itemDataArray.push(getItemDataResults[key]);
+      for (let key in getItemDataResults) {
+        if (getItemDataResults[key].itemId) {
+          itemDataArray.push(getItemDataResults[key]);
+        } else {
+          for (let key2 in getItemDataResults[key]) {
+            if (getItemDataResults[key][key2].itemId) {
+              itemDataArray.push(getItemDataResults[key][key2]);
+            }
+          }
+        }
       }
 
       setItemList(itemDataArray);
@@ -216,6 +238,7 @@ function ItemList() {
       <Table>
         <TableHeader>
           <TableRow>
+            <TableHead>Item Id</TableHead>
             <TableHead>Name</TableHead>
             <TableHead>Category</TableHead>
             <TableHead className="text-right">Price</TableHead>
@@ -226,9 +249,10 @@ function ItemList() {
           </TableRow>
         </TableHeader>
         <TableBody>
-          {itemList?.map((item) =>
+          {itemList?.slice(startIndex, endIndex)?.map((item) =>
             item.itemId ? (
               <TableRow key={item.itemId}>
+                <TableCell>{item.itemId}</TableCell>
                 <TableCell className="font-medium">
                   {capitalizePhrase(item.itemName)}
                 </TableCell>
@@ -278,6 +302,37 @@ function ItemList() {
           )}
         </TableBody>
       </Table>
+      <Pagination>
+        <PaginationContent>
+          <PaginationItem>
+            <PaginationPrevious
+              href="#"
+              className={
+                startIndex === 0 ? "pointer-events-none opacity-50" : undefined
+              }
+              onClick={(e) => {
+                e.preventDefault();
+                setStartIndex(startIndex - rowsPerPage);
+                setEndIndex(endIndex - rowsPerPage);
+              }}
+            />
+          </PaginationItem>
+
+          <PaginationItem>
+            <PaginationNext
+              href="#"
+              className={
+                endIndex === 100 ? "pointer-events-none opacity-50" : undefined
+              }
+              onClick={(e) => {
+                e.preventDefault();
+                setStartIndex(startIndex + rowsPerPage);
+                setEndIndex(endIndex + rowsPerPage);
+              }}
+            />
+          </PaginationItem>
+        </PaginationContent>
+      </Pagination>
 
       <Dialog open={formIsOpen} onOpenChange={setFormIsOpen}>
         <DialogContent>

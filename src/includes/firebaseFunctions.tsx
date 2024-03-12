@@ -86,7 +86,8 @@ async function getItemId() {
 }
 
 async function getItemData() {
-  return new Promise<Array<itemListInterface> | null>((resolve, reject) => {
+  // return new Promise<Array<itemListInterface> | null>((resolve, reject) => {
+  return new Promise<Array<any> | null>((resolve, reject) => {
     const dbRef = ref(getDatabase());
     get(child(dbRef, "items"))
       .then((snapshot) => {
