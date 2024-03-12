@@ -116,7 +116,7 @@ function ItemList() {
   >();
   const [itemList, setItemList] = useState<Array<itemListInterface>>([]);
 
-  const rowsPerPage = 10;
+  const rowsPerPage = 13;
   const [startIndex, setStartIndex] = useState(0);
   const [endIndex, setEndIndex] = useState(rowsPerPage);
 
@@ -322,7 +322,7 @@ function ItemList() {
             <PaginationNext
               href="#"
               className={
-                endIndex === 100 ? "pointer-events-none opacity-50" : undefined
+                endIndex === 1000 ? "pointer-events-none opacity-50" : undefined
               }
               onClick={(e) => {
                 e.preventDefault();
