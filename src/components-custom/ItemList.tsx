@@ -116,9 +116,10 @@ function ItemList() {
   >();
   const [itemList, setItemList] = useState<Array<itemListInterface>>([]);
 
-  const rowsPerPage = 13;
+  const rowsPerPage = 10;
   const [startIndex, setStartIndex] = useState(0);
   const [endIndex, setEndIndex] = useState(rowsPerPage);
+  const [itemCount, setItemCount] = useState(0);
 
   useEffect(() => {
     fetchData();
@@ -148,6 +149,10 @@ function ItemList() {
     } else {
       setItemList(itemDataArray);
     }
+
+    setItemCount(
+      Math.floor(itemDataArray.length / rowsPerPage) * rowsPerPage + rowsPerPage
+    );
   }
 
   // Form
@@ -322,7 +327,9 @@ function ItemList() {
             <PaginationNext
               href="#"
               className={
-                endIndex === 1000 ? "pointer-events-none opacity-50" : undefined
+                endIndex === itemCount
+                  ? "pointer-events-none opacity-50"
+                  : undefined
               }
               onClick={(e) => {
                 e.preventDefault();
