@@ -134,11 +134,25 @@ function ItemList() {
 
     if (getItemDataResults != null) {
       for (let key in getItemDataResults) {
-        if (getItemDataResults[key].itemId) {
+        if (
+          getItemDataResults[key].itemId &&
+          getItemDataResults[key].itemName &&
+          getItemDataResults[key].itemCategory &&
+          getItemDataResults[key].itemPrice &&
+          getItemDataResults[key].itemCost &&
+          getItemDataResults[key].itemStock
+        ) {
           itemDataArray.push(getItemDataResults[key]);
         } else {
           for (let key2 in getItemDataResults[key]) {
-            if (getItemDataResults[key][key2].itemId) {
+            if (
+              getItemDataResults[key][key2].itemId &&
+              getItemDataResults[key][key2].itemName &&
+              getItemDataResults[key][key2].itemCategory &&
+              getItemDataResults[key][key2].itemPrice &&
+              getItemDataResults[key][key2].itemCost &&
+              getItemDataResults[key][key2].itemStock
+            ) {
               itemDataArray.push(getItemDataResults[key][key2]);
             }
           }
